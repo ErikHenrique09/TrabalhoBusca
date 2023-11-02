@@ -57,7 +57,7 @@ def A_STAR(labyrinth, node_start, node_goal):
                 cost_path.insert(0, (current['custo']+current['CustoHeuristico']))
                 path_moves.insert(0, moves[current['id']])
                 current = came_from[current['id']]
-            print("Vamo retorna")
+
             return cost_path, path_moves
 
 
@@ -68,7 +68,6 @@ def A_STAR(labyrinth, node_start, node_goal):
 
             # Evitar dar de cara nas bordas do mapa
             if isinstance(neighbor, dict):
-                #print(g_score)
                 tentative_g_score = g_score[current['id']] + neighbor['custo']
 
                 if tentative_g_score < g_score[neighbor['id']]:
@@ -122,9 +121,6 @@ def reformat_labyrinth(lab_reformat, reforma=True):
                 y['right'] = None
 
     else:
-        print('|||'*40)
-        print("Entramo no else")
-        print('|||' * 40)
         for x in range(len(lab_reformat)):
             for y in range(len(lab_reformat[0])):
                 # x = linha

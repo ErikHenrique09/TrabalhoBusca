@@ -93,7 +93,7 @@ def run_game(loops, linhas, colunas, screen_size):
         #os.remove(f"{os.path.abspath('')}\\previous_labirynth.json ")
 
     # Sorteando inicio e fim
-    node_ini, node_goal = sort_final_start(labirinto, screen_config['linhas'], screen_config['colunas']
+    node_ini, node_goal = sort_final_start(labirinto, screen_config['linhas'], screen_config['colunas'])
 
     # Aplica a heuristica
     labirinto = apply_heuristic(labirinto, node_goal['pos'])
