@@ -18,9 +18,6 @@ def sort_final_start(labirinto, linhas, colunas):
     labirinto[l_ini][c_ini]['terreno'] = 'start'
     labirinto[l_ini][c_ini]['image'] = images['start']
 
-    if labirinto[l_ini][c_ini]['right'] is None and labirinto[l_ini][c_ini]['down'] is None:
-
-
     labirinto[l_fim][c_fim]['custo'] = 0
     labirinto[l_fim][c_fim]['custoheuristico'] = 0
     labirinto[l_fim][c_fim]['terreno'] = 'final'
@@ -99,7 +96,7 @@ def run_game(loops, linhas, colunas, screen_size):
     node_ini, node_goal = sort_final_start(labirinto, screen_config['linhas'], screen_config['colunas']
 
     # Aplica a heuristica
-    labirinto = apply_heuristic(labirinto, node_goal['pos']
+    labirinto = apply_heuristic(labirinto, node_goal['pos'])
 
     try:
         cost_path, move_paths = A_STAR(labirinto, node_ini, node_goal)
