@@ -15,14 +15,12 @@ def sort_final_start(labirinto, linhas, colunas):
         #if l_fim != l_ini or c_fim != c_ini:
             #break
 
-    print(f"Posição inicial: {l_ini}, {c_ini}")
     labirinto[l_ini][c_ini]['terreno'] = 'start'
     labirinto[l_ini][c_ini]['image'] = images['start']
 
     if labirinto[l_ini][c_ini]['right'] is None and labirinto[l_ini][c_ini]['down'] is None:
-        print("Esquisito")
 
-    print(f"Posição final: {l_fim}, {c_fim} : id = {labirinto[l_fim][c_fim]['id']}")
+
     labirinto[l_fim][c_fim]['custo'] = 0
     labirinto[l_fim][c_fim]['custoheuristico'] = 0
     labirinto[l_fim][c_fim]['terreno'] = 'final'
@@ -56,9 +54,6 @@ def generate_screen_config(colunas=10, linhas=10, screen_size=100):
 def run_game(loops, linhas, colunas, screen_size):
     # Inicializa o pygame
     pygame.init()
-    print('-='*40)
-    print('EXECUTAMO')
-    print('-=' * 40)
 
     #informações da tela
     screen_config = generate_screen_config(colunas, linhas, screen_size)
@@ -68,19 +63,13 @@ def run_game(loops, linhas, colunas, screen_size):
     pygame.display.iconify()
 
     if f'previous_labirynth{linhas}X{colunas}.json' not in os.listdir(os.path.abspath('')):
-        print(f"\033[91m !!!!Tamo criando!!!!\033[0m")
+
         # Crie o labirinto
         labirinto = create_labyrinth(screen_config['linhas'], screen_config['colunas'])
 
-        check_labirynth(labirinto, 'depois da criação exata')
-
         l2 = copy.deepcopy(labirinto)
 
-        check_labirynth(labirinto, 'depois do copy')
-
         l2 = reformat_labyrinth(l2.copy())
-
-        check_labirynth(labirinto, 'depois do reformat')
 
         # Converte a lista em uma string JSON
         json_string = json.dumps(l2,indent=4)
@@ -90,10 +79,8 @@ def run_game(loops, linhas, colunas, screen_size):
             arquivo.write(json_string)
 
         arquivo.close()
-
-        check_labirynth(labirinto, 'depois do tamo criando')
     else:
-        print(f"\033[91m ----Tamo Utilizando---- \033[0m")
+
         with open(f"previous_labirynth{linhas}X{colunas}.json", "r") as arquivo:
             # Leia o conteúdo do arquivo (string JSON)
             json_string = arquivo.read()
@@ -107,28 +94,21 @@ def run_game(loops, linhas, colunas, screen_size):
         labirinto = reformat_labyrinth(labirinto, reforma=False).copy()
 
         #os.remove(f"{os.path.abspath('')}\\previous_labirynth.json ")
-        print(os.listdir(os.path.abspath('')))
-        check_labirynth(labirinto, 'depois do tamo utilizando')
 
     # Sorteando inicio e fim
-    node_ini, node_goal = sort_final_start(labirinto, screen_config['linhas'], screen_config['colunas'])
-
-    check_labirynth(labirinto, 'dps do sort')
+    node_ini, node_goal = sort_final_start(labirinto, screen_config['linhas'], screen_config['colunas']
 
     # Aplica a heuristica
-    labirinto = apply_heuristic(labirinto, node_goal['pos'])
-
-    check_labirynth(labirinto, 'dps da heuristica sort')
+    labirinto = apply_heuristic(labirinto, node_goal['pos']
 
     try:
         cost_path, move_paths = A_STAR(labirinto, node_ini, node_goal)
         actions = move_paths
         actions.insert(0, 'draw')
-        print('algoritmo executado')
+
     except:
         st.warning("Não foram encontradas soluções coerentes")
-#
-        check_labirynth(labirinto, "Try catch dps do A*")
+
 #
         st.write("Do try except na main dpos do A*")
 #
@@ -152,7 +132,7 @@ def run_game(loops, linhas, colunas, screen_size):
             pass
 
         actions = ['draw']
-        print("Erro mn")
+
         pass
 
     agente = Agente(labirinto, node_ini['pos'])

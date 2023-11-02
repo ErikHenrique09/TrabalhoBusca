@@ -74,7 +74,6 @@ with col1:
     # Logica de exibição
     if play:
         with st.spinner("Encontrando a melhor rota..."):
-            print("Gerando o gif")
 
             images = [x for x in frame_generator]
 
@@ -82,18 +81,14 @@ with col1:
 
             col2.image('game.gif')
 
-        print('gif gerado')
-
         st.success('Feito!')
 
         frame_generator = main.run_game(loops, linhas, colunas, screen_size)
 
         play = False
 
-        try:
-            os.remove(f"{os.path.abspath('')}\\previous_labirynth{linhas}X{colunas}.json")
-        except:
-            pass
+        os.remove(f"{os.path.abspath('')}\\previous_labirynth{linhas}X{colunas}.json")
+
     else:
 
         col2.image(next(frame_generator))
