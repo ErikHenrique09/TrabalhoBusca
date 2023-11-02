@@ -1,3 +1,5 @@
+import os.path
+
 import pygame
 import sys
 import numpy
@@ -6,7 +8,7 @@ import random
 import imageio
 from collections import deque
 
-PATH = "D:/UTFPR/Periodo 5/Fundamentos Sistemas Inteligentes/Projeto1"
+PATH = os.path.abspath('').replace('\\','/')
 
 # Estrutura de terreno
 
