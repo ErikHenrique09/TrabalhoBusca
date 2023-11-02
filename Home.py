@@ -90,7 +90,10 @@ with col1:
 
         play = False
 
-        os.remove(f"{os.path.abspath('')}\\previous_labirynth{linhas}X{colunas}.json")
+        try:
+            os.remove(f"{os.path.abspath('')}\\previous_labirynth{linhas}X{colunas}.json")
+        except:
+            pass
     else:
 
         col2.image(next(frame_generator))
