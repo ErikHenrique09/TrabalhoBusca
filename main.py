@@ -7,13 +7,13 @@ from tools.classes import *
 
 def sort_final_start(labirinto, linhas, colunas):
 
-    l_ini, l_fim = 0, linhas-1#random.randint(0, linhas - 1), random.randint(0, linhas - 1)
-    c_ini, c_fim = 0, colunas-1#random.randint(0, colunas - 1), random.randint(0, colunas - 1)
+    l_ini, l_fim = random.randint(0, linhas - 1), random.randint(0, linhas - 1)
+    c_ini, c_fim = random.randint(0, colunas - 1), random.randint(0, colunas - 1)
 
-    #while True:
-        #l_fim, c_fim = random.randint(0, linhas - 1), random.randint(0, colunas - 1)
-        #if l_fim != l_ini or c_fim != c_ini:
-            #break
+    while True:
+        l_fim, c_fim = random.randint(0, linhas - 1), random.randint(0, colunas - 1)
+        if l_fim != l_ini or c_fim != c_ini:
+            break
 
     labirinto[l_ini][c_ini]['terreno'] = 'start'
     labirinto[l_ini][c_ini]['image'] = images['start']
@@ -94,17 +94,19 @@ def run_game(loops, linhas, colunas, screen_size):
     # Aplica a heuristica
     labirinto = apply_heuristic(labirinto, node_goal['pos'])
 
+    actions = []
+
     try:
         cost_path, move_paths = A_STAR(labirinto, node_ini, node_goal)
         actions = move_paths
-        actions.insert(0, 'draw')
-
     except:
         st.warning("Não foram encontradas soluções coerentes")
         pass
 
     agente = Agente(labirinto, node_ini['pos'])
-    progress = 0
+
+    actions.insert(0, 'draw')
+
     # Loop principal
     for action in actions:
 
