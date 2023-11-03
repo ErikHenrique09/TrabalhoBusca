@@ -7,8 +7,8 @@ from tools.classes import *
 
 def sort_final_start(labirinto, linhas, colunas):
 
-    l_ini, l_fim = random.randint(0, linhas - 1), random.randint(0, linhas - 1)
-    c_ini, c_fim = random.randint(0, colunas - 1), random.randint(0, colunas - 1)
+    l_ini, l_fim = random.randint(0, int(linhas/2) - 1), random.randint(int(linhas/2), linhas - 1)
+    c_ini, c_fim = random.randint(0, int(colunas/2) - 1), random.randint(int(colunas/2), colunas - 1)
 
     while True:
         l_fim, c_fim = random.randint(0, linhas - 1), random.randint(0, colunas - 1)
@@ -100,7 +100,6 @@ def run_game(loops, linhas, colunas, screen_size):
         cost_path, move_paths = A_STAR(labirinto, node_ini, node_goal)
         actions = move_paths
     except:
-        st.warning("Não foram encontradas soluções coerentes")
         pass
 
     agente = Agente(labirinto, node_ini['pos'])
