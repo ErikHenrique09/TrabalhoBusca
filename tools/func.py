@@ -57,7 +57,7 @@ def A_STAR(labyrinth, node_start, node_goal):
                 cost_path.insert(0, (current['custo']+current['CustoHeuristico']))
                 path_moves.insert(0, moves[current['id']])
                 current = came_from[current['id']]
-            print("Vamo retorna")
+
             return cost_path, path_moves
 
 
@@ -122,9 +122,6 @@ def reformat_labyrinth(lab_reformat, reforma=True):
                 y['right'] = None
 
     else:
-        print('|||'*40)
-        print("Entramo no else")
-        print('|||' * 40)
         for x in range(len(lab_reformat)):
             for y in range(len(lab_reformat[0])):
                 # x = linha
@@ -184,8 +181,6 @@ def create_labyrinth(i=6, j=5):
             if y != j-1:
                 if labirynth[x][y+1]["terreno"] != "muro":
                     labirynth[x][y]["right"] = labirynth[x][y+1]
-
-    check_labirynth(labirynth, 'Dentro mas depois da criação')
 
     return labirynth
 
