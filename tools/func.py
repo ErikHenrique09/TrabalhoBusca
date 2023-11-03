@@ -68,7 +68,6 @@ def A_STAR(labyrinth, node_start, node_goal):
 
             # Evitar dar de cara nas bordas do mapa
             if isinstance(neighbor, dict):
-                #print(g_score)
                 tentative_g_score = g_score[current['id']] + neighbor['custo']
 
                 if tentative_g_score < g_score[neighbor['id']]:

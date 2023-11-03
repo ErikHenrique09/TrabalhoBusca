@@ -1,7 +1,7 @@
 from tools.modules import  *
 import streamlit as st
 import imageio
-import main
+from main import run_game
 import os
 
 # Variável para controlar se o gerador já foi inicializado
@@ -65,7 +65,7 @@ with col1:
         screen_size = 50
         fps = 4
 
-    frame_generator = main.run_game(loops, linhas, colunas, screen_size)
+    frame_generator = run_game(loops, linhas, colunas, screen_size)
 
     col2.title("Game")
 
@@ -83,11 +83,11 @@ with col1:
 
         st.success('Feito!')
 
-        frame_generator = main.run_game(loops, linhas, colunas, screen_size)
+        frame_generator = run_game(loops, linhas, colunas, screen_size)
 
         play = False
 
-        os.remove(f"{os.path.abspath('')}\\previous_labirynth{linhas}X{colunas}.json")
+        os.remove(f"{os.path.abspath('')}/previous_labirynth{linhas}X{colunas}.json")
 
     else:
 
